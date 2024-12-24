@@ -27,7 +27,13 @@ async function checkUserIsEligible(req, res, next) {
       isEnabled: isEnabled,
     });
   } catch (error) {
-    console.log(error);
+    console.error("Unexpected error during flag evaluation:", error);
+
+    // Gracefully respond to the client
+    res.status(500).json({
+      message: "An error occurred while evaluating the feature flag.",
+      error: error.message,
+    });
   }
 }
 

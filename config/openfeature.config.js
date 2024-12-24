@@ -30,10 +30,10 @@ class LoggingHook {
     });
   }
   error(hookContext, error) {
-    console.error(
-      `[Tracking] Error evaluating feature: ${hookContext.flagKey}`,
-      error
-    );
+     console.error("Error during feature flag evaluation:", {
+       flagKey: hookContext.flagKey,
+       error: hookContext.error,
+     });
   }
 }
 // global Register the custom hook
